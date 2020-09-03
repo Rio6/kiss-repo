@@ -1,2 +1,4 @@
 #!/bin/sh -e
-s6-linux-init-maker -1 -f /etc/s6/skel -G "/usr/bin/agetty -L -8 tty1 115200" -c /etc/s6/current /etc/s6/current
+if [ ! -e /etc/s6/currend ]; then
+    s6-linux-init-maker -1 -f /etc/s6/skel -G "/usr/bin/agetty -L -8 tty1 115200" -c /etc/s6/current /etc/s6/current
+fi
