@@ -1,0 +1,5 @@
+meson make
+cairo
+glib
+libffi
+zlib

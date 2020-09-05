@@ -1,0 +1,10 @@
+cairo
+fontconfig
+freetype-harfbuzz
+fribidi
+glib
+libXft
+libXrender
+gobject-introspection
+meson   make
+pkgconf make

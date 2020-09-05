@@ -1,0 +1,7 @@
+#!/bin/sh -e
+export CFLAGS="$CFLAGS -fcommon"
+mkdir build
+cd build
+cmake .. -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_INSTALL_PREFIX=/usr -DSYSCONFDIR=/etc
+make 
+make DESTDIR="$1" install
