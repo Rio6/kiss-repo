@@ -1,4 +1,4 @@
 #!/bin/sh -e
-./configure --prefix=/usr --datatir=/etc --enable-shared
+./configure --prefix=/usr --enable-shared
 make
 make DESTDIR="$1" install
