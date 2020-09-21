@@ -1,0 +1,11 @@
+#!/bin/sh -e
+
+if [ $# -lt 1 ]; then
+    echo $0 '<query>'
+    return 1
+fi
+
+IFS=:
+for repo in $KISS_PATH; do
+    test -n "$repo" && find "$repo" -maxdepth 1 -iname '*'"$1"'*'
+done

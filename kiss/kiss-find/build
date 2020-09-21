@@ -1,0 +1,3 @@
+#!/bin/sh -e
+mkdir -p "$1"/usr/bin
+cp kiss-find "$1"/usr/bin
