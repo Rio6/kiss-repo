@@ -6,6 +6,6 @@ if [ $# -lt 1 ]; then
 fi
 
 IFS=:
-for repo in $KISS_PATH; do
+for repo in /var/db/kiss/installed/ $KISS_PATH; do
     test -n "$repo" && find "$repo" -maxdepth 1 -iname '*'"$1"'*'
 done
