@@ -1,0 +1,8 @@
+#!/bin/sh -e
+
+patch -i ZX-550.patch -p2
+
+MAKE_OPT="-C /usr/lib/modules/`uname -r`/build M=$PWD/module"
+
+make $MAKE_OPT
+make $MAKE_OPT INSTALL_MOD_PATH="$1" modules_install
