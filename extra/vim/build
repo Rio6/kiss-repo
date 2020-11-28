@@ -1,0 +1,23 @@
+#!/bin/sh -e
+
+./configure \
+    --prefix=/usr \
+    --enable-cscope \
+    --enable-multibyte \
+    --with-ex-name=ex \
+    --with-view-name=vim-view \
+    --enable-perlinterp \
+    --enable-python3interp \
+    --with-python3-config-dir=$(python3-config --configdir) \
+    --enable-rubyinterp \
+    --enable-luainterp \
+    --disable-netbeans \
+    --disable-gpm \
+    --disable-hangulinput \
+    --enable-xim \
+    --disable-gui \
+    --disable-nls \
+    --with-x
+
+make
+make DESTDIR="$1" install
