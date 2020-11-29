@@ -1,0 +1,7 @@
+curl
+glu
+libX11
+libXext
+libXrandr
+libressl
+mesa
