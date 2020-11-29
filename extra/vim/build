@@ -1,7 +1,10 @@
 #!/bin/sh -e
 
+echo '#define SYS_VIMRC_FILE "/etc/vimrc"' >> src/feature.h
+
 ./configure \
     --prefix=/usr \
+    --sysconfdir=/etc \
     --enable-cscope \
     --enable-multibyte \
     --with-ex-name=ex \
