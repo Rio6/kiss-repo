@@ -12,7 +12,7 @@ echo '#define SYS_VIMRC_FILE "/etc/vimrc"' >> src/feature.h
     --enable-perlinterp \
     --enable-python3interp \
     --with-python3-config-dir=$(python3-config --configdir) \
-    --enable-rubyinterp \
+    --disable-rubyinterp \
     --enable-luainterp \
     --disable-netbeans \
     --disable-gpm \
