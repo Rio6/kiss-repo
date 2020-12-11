@@ -1,0 +1,18 @@
+#!/bin/sh -e
+
+patch -p1 -i no-gtk2.patch
+
+./configure \
+    --prefix=/usr \
+    --use_i18n=Y \
+    --use_xim=Y \
+    --use_gtk3=Y \
+    --use_qt3=N \
+    --use_qt4=N \
+    --use_qt5=N \
+    --use_tray=Y \
+    --use_tsin=Y \
+    --use_anthy=N
+
+make -j1 # for some reason make fails without
+make DESTDIR="$1" install

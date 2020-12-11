@@ -1,0 +1,45 @@
+--- a/Makefile
++++ b/Makefile
+@@ -102,7 +102,6 @@
+ 
+ all:	$(PROGS) trad2sim $(GCIN_SO) $(DATA) $(PROGS_CV) gcin.spec gcin-fedora.spec
+ 	$(MAKE) -C data
+-	$(MAKE) -C gtk-im
+ 	if [ $(BUILD_MODULE) = 'Y' ]; then $(MAKE) -C modules; fi
+ 	if [ $(USE_I18N) = 'Y' ]; then $(MAKE) -C po; fi
+ 	if [ $(GTK3_IM) = 'Y' ]; then $(MAKE) -C gtk3-im; fi
+@@ -228,7 +227,6 @@
+ 	install -d $(bindir)
+ 	$(MAKE) -C data install
+ 	$(MAKE) -C im-client install
+-	$(MAKE) -C gtk-im install
+ 	if [ $(BUILD_MODULE) = 'Y' ]; then $(MAKE) -C modules install; fi
+ 	if [ $(GTK3_IM) = 'Y' ]; then $(MAKE) -C gtk3-im install; fi
+ 	if [ $(QT_IM) = 'Y' ]; then $(MAKE) -C qt-im install; fi
+@@ -261,7 +259,6 @@
+ 	$(MAKE) -C data clean
+ 	$(MAKE) -C scripts clean
+ 	$(MAKE) -C im-client clean
+-	$(MAKE) -C gtk-im clean
+ 	$(MAKE) -C modules clean
+ 	if [ $(GTK3_IM) = 'Y' ]; then $(MAKE) -C gtk3-im clean; fi
+ 	$(MAKE) -C qt-im clean
+--- a/im-client/Makefile
++++ b/im-client/Makefile
+@@ -23,7 +23,6 @@
+ 	$(CC) $(SO_FLAGS) -Wl,-soname,libgcin-im-client.so.1 $(OBJS) -lX11 -o $@ -L/usr/X11R6/lib
+ 	ln -sf $(SOFILEVER) $(SOFILE)
+ 	ln -sf $(SOFILEVER) $(SOFILE).1
+-	$(MAKE) -C ../gtk-im
+ 
+ LOCALLIB=/usr/local/$(LIB)
+ 
+--- a/im-client/gcin-im-client.h
++++ b/im-client/gcin-im-client.h
+@@ -1,5 +1,6 @@
+ #ifndef GCIN_IM_CLIENT_H
+ #define GCIN_IM_CLIENT_H
++#include <sys/types.h>
+ struct GCIN_PASSWD;
+ 
+ typedef struct GCIN_client_handle_S {
