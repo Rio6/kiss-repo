@@ -1,0 +1,7 @@
+#!/bin/sh -e
+
+mkdir -p "$1/usr/lib/firmware"
+
+for firmware in i915/kbl_dmc_ver1_04.bin iwlwifi-QuZ-a0-jf-b0-59.ucode rtl_nic/rtl8411-2.fw; do
+    install -D "$firmware" "$1/usr/lib/firmware/$firmware"
+done
