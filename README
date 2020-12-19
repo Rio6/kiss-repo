@@ -2,6 +2,6 @@ Rio6's kiss repo
 
 s6: skarnet.org's small and secure supervision software suite.
 kiss: some kiss scripts
-wm: windows manager stuff. Only awesomewm so far
+xorg: X stuff. Only awesomewm for wm so far
 extra: my personal patched packages
 tomato: hardware specific packages
