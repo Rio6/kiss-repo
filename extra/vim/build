@@ -9,15 +9,16 @@ echo '#define SYS_VIMRC_FILE "/etc/vimrc"' >> src/feature.h
     --enable-multibyte \
     --with-ex-name=ex \
     --with-view-name=vim-view \
-    --enable-perlinterp \
-    --enable-python3interp \
+    --enable-perlinterp=dynamic \
+    --enable-pythoninterp=dynamic \
+    --enable-python3interp=dynamic \
     --with-python3-config-dir=$(python3-config --configdir) \
-    --disable-rubyinterp \
-    --enable-luainterp \
+    --enable-rubyinterp=dynamic \
+    --enable-luainterp=dynamic \
+    --enable-tclinterp=dynamic \
     --disable-netbeans \
     --disable-gpm \
     --disable-hangulinput \
-    --enable-xim \
     --disable-gui \
     --disable-nls \
     --with-x
