@@ -7,5 +7,5 @@ fi
 
 IFS=:
 for repo in /var/db/kiss/installed/ $KISS_PATH; do
-    test -n "$repo" && find "$repo" -maxdepth 1 -iname '*'"$1"'*'
+    test -n "$repo" && find "$repo" -mindepth 1 -maxdepth 1 -iname '*'"$1"'*'
 done
