@@ -2,9 +2,9 @@
 
 patch -p1 -i no-gtk2.patch
 
-./configure \
+USE_CHEWING=N ./configure \
     --prefix=/usr \
-    --use_i18n=Y \
+    --use_i18n=N \
     --use_xim=Y \
     --use_gtk3=Y \
     --use_qt3=N \
