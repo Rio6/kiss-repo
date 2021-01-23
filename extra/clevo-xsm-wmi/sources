@@ -1,2 +1,3 @@
 https://bitbucket.org/tuxedocomputers/clevo-xsm-wmi/get/dcf282992eb8.tar.gz
 patches/ZX-550.patch
+patches/rfkill.patch
