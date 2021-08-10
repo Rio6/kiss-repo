@@ -1,12 +1,28 @@
 #!/bin/sh -e
 
-for patch in *.patch; do
+for patch in patch/*.patch; do
     patch -p1 < "$patch"
 done
 
+# Remove forced gcc/g++ usage so builds work on gcc-less systems.
+sed -e "s#= g[c+][c+]#= $CC#g" \
+    -e "s#\(\$(CROSS_COMPILE)\)gcc#\1$CC#g" Makefile > _
+mv -f _ Makefile
+
+case $("$CC" --version) in *clang*)
+    # Disable UB based optimizations which are optimized out by
+    # clang and become null pointer dereferences(?).
+    patch -p1 < patch-clang/fix-UB.patch
+
+    # Ensure that busybox's build system is aware that 'cc' may point
+    # to clang rather than GCC. This is the case in non-GCC systems.
+    sed "s&\(\$(CC),\)clang&\1$CC&g" Makefile.flags > _
+    mv -f _ Makefile.flags
+esac
+
 # Build and install regular busybox.
 # This excludes utilities which require 'suid' to function.
-make CC="${CC:-cc}" HOSTCC="${CC:-cc}"
+make HOSTCC="$CC"
 make CONFIG_PREFIX="$1/usr" install
 
 # Rename the binary temporarily.
@@ -15,7 +31,7 @@ mv "$1/usr/bin/busybox" "$1/usr/bin/busybox-nosuid"
 # Build and install suid busybox.
 # This _only_ includes utlities which require 'suid' to function.
 cp -f .config-suid .config
-make CC="${CC:-cc}" HOSTCC="${CC:-cc}"
+make HOSTCC="$CC"
 make CONFIG_PREFIX="$1/usr" install
 
 # Aptly name the busybox binaries.
@@ -34,3 +50,9 @@ done
 
 # Set suid on busybox suid.
 chmod u+s "$1/usr/bin/busybox-suid"
+
+# The acpid command requires that this directory exist
+# and does not automatically create it..
+mkdir -p "$1/etc/acpid"
+
+cp -f mdev.conf "$1/etc/mdev.conf"
