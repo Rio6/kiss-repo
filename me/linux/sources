@@ -1,2 +1,3 @@
 git+https://github.com/torvalds/linux.git#573147ceb9f0581a6da096dd86e29b59b21b8abf
+git+https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git@20210716 firmware
 files/config

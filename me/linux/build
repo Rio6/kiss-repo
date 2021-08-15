@@ -12,7 +12,7 @@ export KBUILD_OUTPUT="$HOME/.cache/kbuild"
 mkdir -p "$KBUILD_OUTPUT"
 mv "$OLDPWD/config" "$KBUILD_OUTPUT/.config"
 
-make
+make CONFIG_EXTRA_FIRMWARE_DIR="$OLDPWD/firmware"
 
 mkdir -p "$1/boot"
 make INSTALL_PATH="$1/boot" install
